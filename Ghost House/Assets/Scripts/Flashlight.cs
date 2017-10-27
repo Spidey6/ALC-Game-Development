@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Flashlight : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class Flashlight : MonoBehaviour {
 		// Toggle light on/off when l key is pressed.
 		if (Input.GetKeyUp (KeyCode.L) && lightOn) {
             lightOn = false;
-			light.enabled = true;
+			light.enabled = false;
 		}
 		
 		else if (Input.GetKeyUp(KeyCode.L) && !lightOn){
