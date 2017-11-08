@@ -31,5 +31,11 @@ public class Flashlight : MonoBehaviour {
 		}
 	
 	}
-	
+	public void isLightOn(){
+		lightOn = true;
+	}
+
+	public bool isLightOn(){
+		return lightOn;
+	}
 }
