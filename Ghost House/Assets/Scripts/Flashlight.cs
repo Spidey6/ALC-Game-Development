@@ -46,7 +46,7 @@ public class Flashlight : MonoBehaviour {
 			light.enabled = true;
 		}
 	  //Update Battery UI text
-	  batteryText.text = currentPower.ToString();
+	  //batteryText.text = currentPower.ToString();
 
 	  //Drain Battery Life
 	  if(currentPower > 0){

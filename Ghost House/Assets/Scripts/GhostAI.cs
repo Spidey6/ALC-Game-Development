@@ -41,7 +41,7 @@ public class GhostAI : MonoBehaviour {
 
 	if(Physics.Raycast(transform.position,fwd,out hit,3)){
 
-		if(hit.collider.tag == "Wall"){
+		if(hit.collider.tag == "wall"){
 			transform.Rotate(0,randomNum,0);
 		}
 	}
