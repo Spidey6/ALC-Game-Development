@@ -15,6 +15,8 @@ public class Flashlight : MonoBehaviour {
 
 	public float batDrainDelay;
 
+	bool draining = false; 
+
 	Light light;
 	// Gets Battery UI Text
 	public Text batteryText;
@@ -45,12 +47,19 @@ public class Flashlight : MonoBehaviour {
 			lightOn = true;
 			light.enabled = true;
 		}
-	  //Update Battery UI text
-	  //batteryText.text = currentPower.ToString();
+		//Update Battery UI text
+		batteryText.text = currentPower.ToString();
+	  
 
 	  //Drain Battery Life
-	  if(currentPower > 0){
-		  StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+	  if(currentPower > 0 && lightOn){
+		  if(!draining){
+			  	StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+		  }
+		  else if(currentPower <= 0){
+			  lightOn = false;
+			  light.enabled = false;
+		  }
 	  }
 	}
 	public void setLightOn(){
