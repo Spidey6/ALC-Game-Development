@@ -71,12 +71,19 @@ public class Flashlight : MonoBehaviour {
 	}
 
 	IEnumerator BatteryDrain(float delay, int amount){
+		if(lightOn){
+			draining = true;
+
 		yield return new WaitForSeconds(delay);
+		print(currentPower);
 		currentPower -= amount;
+		}
 		if(currentPower <= 0){
 			currentPower = 0;
 			print("Battery is dead!");
 			light.enabled = false;
 		}
+
+		draining = false;
 	}
 }
