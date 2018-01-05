@@ -4,12 +4,14 @@ using System.Collections;
 public class BatterySpawn : MonoBehaviour {
 
 
+	public Rigidbody battery;
 
-	public GameObject battery;
 	public Transform spawnPoint;
+
 	public float spawnTime;
 
 	public bool batSpawned;
+	private bool spawning = false;
 
 
 	// Use this for initialization
@@ -20,35 +22,52 @@ public class BatterySpawn : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(batSpawned == false){
-			StartCoroutine(SpawnBat(spawnTime, battery));
+			if(batSpawned == false){
+				if(!spawning){
+					spawning = !spawning;
+					StartCoroutine(SpawnBat(spawnTime, battery));
+					print("Spawn Box Empty");
+				}
+			}
+			else if(batSpawned == true){
+				print("Battery has spawned !")
+			}
 		}
-		else{
+		
+			
+		
+	
 
-		}
-	}
 
-
-		void OnTriggerEnter(Collider other){
+		 OnTriggerEnter(Collider other){
 			if(other.gameObject.tag == "Battery"){
+				print("Battery is in the trigger");
 				batSpawned = true;
 			}
-			else {
+			else{
 				batSpawned = false;
 			}
 
-
-
-
-
-		}
+		 }
 			
 		
-		 
-		 
-	 
-	 IEnumerator SpawnBat(float time, Rigidbody bat){
-		yield return new WaitForSeconds(spawnTime);
-		Instantiate(battery, spawnPoint.position, spawnPoint.rotation); 
+			
+		
+		IEnumerator SpawnBat(float time, Rigidbody bat){
+			yield return new WaitForSeconds(time);
+			Instantiate(bat, spawnPoint.position, spawnPoint.rotation);
+			batSpawned = true;
+		}
 	}
-
 }
+
+
+
+	
+
+
+
+
+
+
+		
